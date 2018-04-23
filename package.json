@@ -4,18 +4,25 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/DzmitryBiruk/nodejs_epam.git"
   },
-  "author": "",
+  "author": "Dzmitry Biruk",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/DzmitryBiruk/nodejs_epam/issues"
   },
   "homepage": "https://github.com/DzmitryBiruk/nodejs_epam#readme",
+  "babel": {
+    "presets": [
+      "env",
+      "stage-2"
+    ]
+  },
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-preset-env": "^1.6.1",
