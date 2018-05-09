@@ -1,5 +1,6 @@
 import DirWatcher from './modules/dirwatcher';
 import Importer from './modules/importer';
 
-const dir = new DirWatcher();
+const dirWatcher = new DirWatcher();
+dirWatcher.watch(`${process.cwd()}/data`, 5000);
 const imp = new Importer();
