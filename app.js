@@ -3,4 +3,4 @@ import Importer from './modules/importer';
 
 const dirWatcher = new DirWatcher();
 dirWatcher.watch(`${process.cwd()}/data`, 5000);
-const imp = new Importer();
+Importer.listen(dirWatcher);

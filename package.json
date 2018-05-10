@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/DzmitryBiruk/nodejs_epam#readme",
   "dependencies": {
-    "csvtojson": "1.1.12",
+    "csvjson": "5.0.0",
     "eventemitter3": "3.1.0",
     "lodash": "4.17.10"
   },

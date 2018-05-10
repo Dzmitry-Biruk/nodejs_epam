@@ -8,9 +8,9 @@ export default class DirWatcher extends EventEmitter {
     this.filesData = [];
   }
 
-  watch(path, delay) {
+  watch(dirPath, delay) {
     const watchFiles = () => {
-      fs.readdir(path, (error, checkedFiles) => {
+      fs.readdir(dirPath, (error, checkedFiles) => {
         if (error) { console.log(error); }
 
         /** return array of objects with files data
@@ -21,7 +21,7 @@ export default class DirWatcher extends EventEmitter {
         * }]
         */
         const newFilesData = checkedFiles.map((fileName) => {
-          const lastTimeModified = fs.statSync(`${path}/${fileName}`).mtimeMs;
+          const lastTimeModified = fs.statSync(`${dirPath}/${fileName}`).mtimeMs;
           return {
             fileName,
             lastTimeModified,
@@ -33,9 +33,8 @@ export default class DirWatcher extends EventEmitter {
 
         if (difference.length !== 0) {
           // triggers event on every changed file
-          difference.map(obj => this.emit('dirwatcher:changed', obj.fileName));
+          difference.map(obj => this.emit('dirwatcher:changed', dirPath, obj.fileName));
           this.filesData = newFilesData;
-          console.log(difference);
         }
       });
     };
