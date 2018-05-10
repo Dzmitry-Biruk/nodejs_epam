@@ -1,0 +1,35 @@
+{
+  "name": "nodejs_epam",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js --exec babel-node"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DzmitryBiruk/nodejs_epam.git"
+  },
+  "author": "Dzmitry Biruk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DzmitryBiruk/nodejs_epam/issues"
+  },
+  "homepage": "https://github.com/DzmitryBiruk/nodejs_epam#readme",
+  "dependencies": {
+    "csvjson": "5.0.0",
+    "eventemitter3": "3.1.0",
+    "lodash": "4.17.10"
+  },
+  "devDependencies": {
+    "babel-cli": "6.26.0",
+    "babel-core": "6.26.3",
+    "babel-preset-env": "1.6.1",
+    "babel-preset-stage-2": "6.24.1",
+    "babel-register": "6.26.0",
+    "eslint": "4.19.1",
+    "eslint-config-airbnb-base": "12.1.0",
+    "eslint-plugin-import": "2.11.0",
+    "nodemon": "1.17.4"
+  }
+}
