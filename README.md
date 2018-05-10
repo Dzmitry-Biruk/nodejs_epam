@@ -1,5 +1,10 @@
 # nodejs_epam task2
 
+```bash
+npm i
+npm start
+```
+
 # Task description
 
 1. Create a directory called data. We will assume that CSV files with new products will be uploaded in this directory for processing by our application.
