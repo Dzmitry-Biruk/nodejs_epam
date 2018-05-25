@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/DzmitryBiruk/nodejs_epam/issues"
   },
-  "homepage": "https://github.com/DzmitryBiruk/nodejs_epam#readme"
+  "homepage": "https://github.com/DzmitryBiruk/nodejs_epam#readme",
+  "devDependencies": {
+    "nodemon": "1.17.5"
+  }
 }
