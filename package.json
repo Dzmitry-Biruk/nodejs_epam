@@ -1,5 +1,5 @@
 {
-  "name": "nodejs_epam",
+  "name": "Task 3 COMMAND LINE. DEBUGGING. ERROR HANDLING / FILE SYSTEM AND STREAMS",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -27,6 +27,7 @@
     "nodemon": "1.17.5"
   },
   "dependencies": {
+    "commander": "2.15.1",
     "csvjson": "5.0.0"
   }
 }
