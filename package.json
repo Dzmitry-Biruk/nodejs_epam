@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon src/index.js --exec babel-node"
   },
   "repository": {
     "type": "git",
@@ -17,6 +17,16 @@
   },
   "homepage": "https://github.com/DzmitryBiruk/nodejs_epam#readme",
   "devDependencies": {
+    "babel-cli": "6.26.0",
+    "babel-preset-env": "1.7.0",
+    "babel-preset-stage-2": "6.24.1",
+    "babel-register": "6.26.0",
+    "eslint": "4.19.1",
+    "eslint-config-airbnb-base": "12.1.0",
+    "eslint-plugin-import": "2.12.0",
     "nodemon": "1.17.5"
+  },
+  "dependencies": {
+    "csvjson": "5.0.0"
   }
 }
