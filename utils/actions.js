@@ -1,5 +1,27 @@
-function reverse(str) { /* ... */ }
-function transform(str) { /* ... */ }
-function outputFile(filePath) { /* ... */ }
-function convertFromFile(filePath) { /* ... */ }
-function convertToFile(filePath) { /* ... */ }
+const reverse = (str) => {
+  console.log('reverse', str);
+};
+
+const transform = (str) => {
+  console.log('transform', str);
+};
+
+const outputFile = (filePath) => {
+  console.log('outputFile', filePath);
+};
+
+const convertFromFile = (filePath) => {
+  console.log('convertFromFile', filePath);
+};
+
+const convertToFile = (filePath) => {
+  console.log('convertToFile', filePath);
+};
+
+module.exports = {
+  reverse,
+  transform,
+  outputFile,
+  convertFromFile,
+  convertToFile,
+};
