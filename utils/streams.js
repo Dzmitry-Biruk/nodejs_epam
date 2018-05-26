@@ -1,38 +1,26 @@
 #!/usr/bin/env node
+const minimist = require('minimist');
+const { minimistConfig } = require('./minimistConfig');
+const { helpMessage } = require('./helpMessages');
+const { actionsController } = require('./actionsController');
 
-const program = require('commander');
-const {
-  reverse,
-  transform,
-  outputFile,
-  convertFromFile,
-  convertToFile,
-} = require('./actions');
 
-const actionController = (mode) => {
-  switch (mode) {
-    case 'reverse':
-      reverse();
-      break;
-    case 'transform':
-      transform();
-      break;
-    case 'outputFile':
-      outputFile();
-      break;
-    case 'convertFromFile':
-      convertFromFile();
-      break;
-    case 'convertToFile':
-      convertToFile();
-      break;
-    default:
-      console.log('incorrect action identifier!');
+const parseArgs = minimist(process.argv.slice(2), minimistConfig);
+
+const commandsController = (args = {}) => {
+  const actionName = args.action;
+  const filePath = args.file;
+  const arrayOfStrings = args._;
+  const isHelpCommand = args.help;
+
+  if (isHelpCommand) {
+    helpMessage();
+  } else if (!actionName) {
+    console.log('    You need to use --action command!');
+    helpMessage();
+  } else {
+    actionsController(actionName, filePath, arrayOfStrings);
   }
 };
 
-program
-  .option('-a, --action <mode>', 'action mame', actionController)
-  .option('-f, --file <mode>", "path to file');
-
-program.parse(process.argv);
+commandsController(parseArgs);
