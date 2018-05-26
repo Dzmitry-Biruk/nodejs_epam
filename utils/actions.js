@@ -1,3 +1,6 @@
+const fs = require('fs');
+const through2 = require('through2');
+
 const reverse = (str) => {
   console.log('reverse', str);
 };
