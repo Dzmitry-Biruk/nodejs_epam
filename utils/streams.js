@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 const minimist = require('minimist');
-const { minimistConfig } = require('./minimistConfig');
+const { minimistConfig } = require('../config/minimistConfig');
 const { helpMessage } = require('./helpMessages');
 const { actionsController } = require('./actionsController');
 
