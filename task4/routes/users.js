@@ -2,9 +2,10 @@ const express = require('express');
 const find = require('lodash/find');
 const users = require('../models/usersList');
 const usersController = require('../controllers/usersController');
+const verifyToken = require('../middlewares/authMiddleware');
 
 const usersRouter = express.Router();
-
+usersRouter.use(verifyToken);
 
 usersRouter.param('id', (req, res, next, id) => {
   req.user = find(users, { id });

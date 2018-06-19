@@ -2,8 +2,10 @@ const express = require('express');
 const find = require('lodash/find');
 const products = require('../models/productsList');
 const productsController = require('../controllers/productsController');
+const verifyToken = require('../middlewares/authMiddleware');
 
 const productsRouter = express.Router();
+productsRouter.use(verifyToken);
 
 
 productsRouter.param('id', (req, res, next, id) => {
