@@ -6,6 +6,7 @@ const getUserById = (req, res) => {
   res.json(req.user);
 };
 
+
 const getUsers = (req, res, users) => {
   res.json(users || []);
 };
