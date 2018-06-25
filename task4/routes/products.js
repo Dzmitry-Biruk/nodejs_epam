@@ -1,28 +1,23 @@
 const express = require('express');
-const find = require('lodash/find');
-const products = require('../models/productsList');
 const productsController = require('../controllers/productsController');
 const verifyToken = require('../middlewares/authMiddleware');
+
 
 const productsRouter = express.Router();
 productsRouter.use(verifyToken);
 
-
-productsRouter.param('id', (req, res, next, id) => {
-  req.product = find(products, { id });
-  next();
-});
+productsRouter.param('id', productsController.idParamHook);
 
 
 productsRouter.route('/api/products')
-  .get((req, res) => { productsController.getProducts(req, res, products); })
-  .post((req, res) => { productsController.putProduct(req, res); }); // not implemented yet
+  .get(productsController.getProducts)
+  .post(productsController.addProduct);
 
 productsRouter.route('/api/products/:id')
-  .get((req, res) => { productsController.getProductById(req, res); });
+  .get(productsController.getProductById);
 
 productsRouter.route('/api/products/:id/reviews')
-  .get((req, res) => { productsController.getProductById(req, res, products); }); // not impl yet
+  .get(productsController.getProductReviewsById);
 
 
 module.exports = productsRouter;

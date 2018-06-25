@@ -9,9 +9,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use(
+  authRouter,
   usersRouter,
   productsRouter,
-  authRouter,
 );
 
 module.exports = { app };

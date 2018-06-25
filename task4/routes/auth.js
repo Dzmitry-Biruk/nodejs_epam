@@ -6,7 +6,7 @@ const authRouter = express.Router();
 
 
 authRouter.route('/auth')
-  .post((req, res) => { authController.authUser(req, res); });
+  .post(authController.authUser);
 
 
 module.exports = authRouter;
