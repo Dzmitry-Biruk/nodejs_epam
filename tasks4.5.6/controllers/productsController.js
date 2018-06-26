@@ -1,4 +1,4 @@
-const products = require('../models/productsList');
+const products = require('../old_models/productsList');
 const find = require('lodash/find');
 const isEmpty = require('lodash/isEmpty');
 

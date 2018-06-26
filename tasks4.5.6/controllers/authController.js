@@ -1,6 +1,6 @@
 const find = require('lodash/find');
 const jwt = require('jsonwebtoken');
-const users = require('../models/usersList');
+const users = require('../old_models/usersList');
 
 
 const matchCredentials = (name, password) => {

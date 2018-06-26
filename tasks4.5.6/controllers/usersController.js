@@ -1,5 +1,5 @@
 const find = require('lodash/find');
-const User = require('../models/user');
+const { User } = require('../models');
 
 const getUsersFromDb = () => User.findAll();
 
