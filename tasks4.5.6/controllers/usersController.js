@@ -1,8 +1,10 @@
-const users = require('../models/usersList');
 const find = require('lodash/find');
+const User = require('../models/user');
+
+const getUsersFromDb = () => User.findAll();
 
 const idParamHook = (req, res, next, id) => {
-  req.user = find(users, { id });
+  req.user = find(getUsersFromDb(), { id });
   next();
 };
 
@@ -16,7 +18,7 @@ const getUserById = (req, res) => {
 
 
 const getUsers = (req, res) => {
-  res.json(users || []);
+  res.json(getUsersFromDb() || []);
 };
 
 module.exports = {
