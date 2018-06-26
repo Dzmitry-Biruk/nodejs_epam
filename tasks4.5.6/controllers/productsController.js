@@ -1,14 +1,16 @@
-const products = require('../old_models/productsList');
 const find = require('lodash/find');
 const isEmpty = require('lodash/isEmpty');
+const { Product } = require('../models');
+
+const getProductFromDb = () => Product.findAll();
 
 const idParamHook = (req, res, next, id) => {
-  req.product = find(products, { id });
+  req.product = find(getProductFromDb(), { id });
   next();
 };
 
 const getProducts = (req, res) => {
-  res.json(products || []);
+  res.json(getProductFromDb() || []);
 };
 
 const getProductById = (req, res) => {
@@ -32,12 +34,12 @@ const getProductReviewsById = (req, res) => {
 
 // TODO: Rewrite this with writable streams
 const addProduct = (req, res) => {
-  const product = find(products, { id: req.body.id });
+  const product = find(getProductFromDb(), { id: req.body.id });
 
   if (product) {
     res.send('Product with this id already exist');
   } else {
-    products.push(req.body);
+    getProductFromDb().push(req.body);
     res.json(req.body);
   }
 };
