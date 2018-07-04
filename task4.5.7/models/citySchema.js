@@ -7,4 +7,6 @@ const citySchema = mongoose.Schema({
   location: { lat: Number, long: Number },
 });
 
-module.exports = citySchema;
+const City = mongoose.model('cities', citySchema);
+
+module.exports = City;

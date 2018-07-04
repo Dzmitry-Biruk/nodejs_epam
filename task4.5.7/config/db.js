@@ -1,4 +1,4 @@
-const dbUrl = 'mongodb://<use1>:<980649470Q>@ds227171.mlab.com:27171/epam_nodejs';
+const dbUrl = 'mongodb://user2:980649470q@ds227171.mlab.com:27171/epam_nodejs';
 
 const dbOptions = {
   server: {

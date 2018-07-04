@@ -1,5 +1,5 @@
 const express = require('express');
-const productsController = require('../controllers/productsController');
+const citiesController = require('../controllers/citiesController');
 // const verifyToken = require('../middlewares/authMiddleware');
 
 
@@ -10,8 +10,8 @@ const citiesRouter = express.Router();
 
 
 citiesRouter.route('/api/cities')
-  .get(productsController.getProducts)
-  .post(productsController.addProduct);
+  .get(citiesController.getCities);
+// .post(productsController.addProduct);
 
 // citiesRouter.route('/api/products/:id')
 //   .get(productsController.getProductById);
