@@ -1,23 +1,20 @@
 const express = require('express');
 const citiesController = require('../controllers/citiesController');
-// const verifyToken = require('../middlewares/authMiddleware');
+const verifyToken = require('../middlewares/authMiddleware');
 
 
 const citiesRouter = express.Router();
-// productsRouter.use(verifyToken);
+citiesRouter.use(verifyToken);
 
-// citiesRouter.param('id', productsController.idParamHook);
+// citiesRouter.param('id', citiesController.idParamHook);
 
 
 citiesRouter.route('/api/cities')
   .get(citiesController.getCities);
-// .post(productsController.addProduct);
+// .post(citiesController.addCity);
 
-// citiesRouter.route('/api/products/:id')
+// citiesRouter.route('/api/cities/:id')
 //   .get(productsController.getProductById);
-//
-// citiesRouter.route('/api/products/:id/reviews')
-//   .get(productsController.getProductReviewsById);
 
 
 module.exports = citiesRouter;
