@@ -1,19 +1,23 @@
-const find = require('lodash/find');
 const jwt = require('jsonwebtoken');
-const users = require('../models/usersList');
+const User = require('../models/userSchema');
 
 
-const matchCredentials = (name, password) => {
-  const user = find(users, { name });
-  if (user && user.password === password) {
+const matchCredentials = async (name, password) => {
+  const authUser = await User.findOne({ name }, (err, user) => {
+    if (err) throw err;
+
+    return user;
+  });
+
+  if (authUser.password === password) {
     return true;
   }
   return false;
 };
 
-const authUser = (req, res) => {
+const authUser = async (req, res) => {
   const { name, password } = req.body;
-  const isValidCredentials = matchCredentials(name, password);
+  const isValidCredentials = await matchCredentials(name, password);
 
   if (isValidCredentials) {
     const token = jwt.sign({ name }, 'privateKey');

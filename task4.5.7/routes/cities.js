@@ -6,15 +6,12 @@ const verifyToken = require('../middlewares/authMiddleware');
 const citiesRouter = express.Router();
 citiesRouter.use(verifyToken);
 
-// citiesRouter.param('id', citiesController.idParamHook);
-
 
 citiesRouter.route('/api/cities')
   .get(citiesController.getCities);
 // .post(citiesController.addCity);
 
-// citiesRouter.route('/api/cities/:id')
-//   .get(productsController.getProductById);
-
+citiesRouter.route('/api/cities/:id')
+  .get(citiesController.getCityById);
 
 module.exports = citiesRouter;
