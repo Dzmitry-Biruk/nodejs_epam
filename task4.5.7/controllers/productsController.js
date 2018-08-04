@@ -29,7 +29,6 @@ const getProductReviewsById = (req, res) => {
   }
 };
 
-
 // TODO: Rewrite this with writable streams
 const addProduct = (req, res) => {
   const product = find(products, { id: req.body.id });

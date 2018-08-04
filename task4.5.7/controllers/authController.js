@@ -1,7 +1,6 @@
 const jwt = require('jsonwebtoken');
 const User = require('../models/userSchema');
 
-
 const matchCredentials = async (name, password) => {
   const authUser = await User.findOne({ name }, (err, user) => {
     if (err) throw err;
@@ -21,21 +20,18 @@ const authUser = async (req, res) => {
 
   if (isValidCredentials) {
     const token = jwt.sign({ name }, 'privateKey');
-    res.status(200)
-      .send({
-        data: {
-          user: {
-            email: `${name}@gmail.com`,
-            username: name,
-          },
+    res.status(200).send({
+      data: {
+        user: {
+          email: `${name}@gmail.com`,
+          username: name,
         },
-        token,
-      });
+      },
+      token,
+    });
   } else {
-    res.status(404)
-      .send('Invalid userName or password');
+    res.status(404).send('Invalid userName or password');
   }
 };
-
 
 module.exports = { authUser };
