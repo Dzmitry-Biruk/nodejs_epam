@@ -1,25 +1,28 @@
-const users = require('../models/usersList');
-const find = require('lodash/find');
+const User = require('../models/userSchema');
 
-const idParamHook = (req, res, next, id) => {
-  req.user = find(users, { id });
-  next();
+const getUserById = async (req, res) => {
+  const user = await User.findOne({ id: req.params.id }, (err) => {
+    if (err) {
+      res.status(500).send();
+      throw err;
+    }
+  });
+
+  res.json(user || {});
 };
 
-const getUserById = (req, res) => {
-  if (!req.user) {
-    res.send('Invalid User id!');
-  }
+const getUsers = async (req, res) => {
+  const users = await User.find({}, (err) => {
+    if (err) {
+      res.status(500).send();
+      throw err;
+    }
+  });
 
-  res.json(req.user);
-};
-
-const getUsers = (req, res) => {
   res.json(users || []);
 };
 
 module.exports = {
-  idParamHook,
   getUserById,
   getUsers,
 };

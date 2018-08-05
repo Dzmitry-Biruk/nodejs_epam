@@ -1,48 +1,67 @@
-const products = require('../models/productsList');
-const find = require('lodash/find');
+const Product = require('../models/productSchema');
 const isEmpty = require('lodash/isEmpty');
 
-const idParamHook = (req, res, next, id) => {
-  req.product = find(products, { id });
-  next();
-};
+const getProducts = async (req, res) => {
+  const products = await Product.find({}, (err) => {
+    if (err) {
+      res.status(500).send();
+      throw err;
+    }
+  });
 
-const getProducts = (req, res) => {
   res.json(products || []);
 };
 
-const getProductById = (req, res) => {
-  if (!req.product) {
-    res.send('Invalid Product id!');
-  }
+const getProductById = async (req, res) => {
+  const product = await Product.findOne({ id: req.params.id }, (err) => {
+    if (err) {
+      res.status(500).send();
+      throw err;
+    }
+  });
 
-  res.json(req.product);
+  res.json(product || []);
 };
 
-const getProductReviewsById = (req, res) => {
-  if (!req.product) {
-    res.send('Invalid Product id!');
-  } else if (isEmpty(req.product.reviews)) {
+const getProductReviewsById = async (req, res) => {
+  const product =
+    (await Product.findOne({ id: req.params.id }, (err) => {
+      if (err) {
+        res.status(500).send();
+        throw err;
+      }
+    })) || {};
+
+  if (isEmpty(product.reviews)) {
     res.send('There is no reviews');
   } else {
-    res.json(req.product.reviews);
+    res.json(product.reviews);
   }
 };
 
-// TODO: Rewrite this with writable streams
-const addProduct = (req, res) => {
-  const product = find(products, { id: req.body.id });
+const addProduct = async (req, res) => {
+  const product = await Product.findOne({ id: req.params.id }, (err) => {
+    if (err) {
+      res.status(500).send();
+      throw err;
+    }
+  });
 
-  if (product) {
-    res.send('Product with this id already exist');
+  if (isEmpty(product)) {
+    Product.create(req.body, (err) => {
+      if (err) {
+        res.status(500).send();
+        throw err;
+      }
+
+      res.send('Data added to Database');
+    });
   } else {
-    products.push(req.body);
-    res.json(req.body);
+    res.send('Product with this id already exist');
   }
 };
 
 module.exports = {
-  idParamHook,
   getProducts,
   getProductById,
   getProductReviewsById,

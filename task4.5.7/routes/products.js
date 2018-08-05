@@ -5,8 +5,6 @@ const verifyToken = require('../middlewares/authMiddleware');
 const productsRouter = express.Router();
 productsRouter.use(verifyToken);
 
-productsRouter.param('id', productsController.idParamHook);
-
 productsRouter
   .route('/api/products')
   .get(productsController.getProducts)

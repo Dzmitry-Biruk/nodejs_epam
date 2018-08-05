@@ -2,7 +2,10 @@ const City = require('../models/citySchema');
 
 const getCities = (req, res) => {
   City.find({}, (err, cities) => {
-    if (err) throw err;
+    if (err) {
+      res.status(500).send();
+      throw err;
+    }
 
     res.json(cities || []);
   });
@@ -10,7 +13,10 @@ const getCities = (req, res) => {
 
 const getCityById = (req, res) => {
   City.findOne({ id: req.params.id }, (err, city) => {
-    if (err) throw err;
+    if (err) {
+      res.status(500).send();
+      throw err;
+    }
 
     res.json(city || []);
   });
