@@ -5,9 +5,15 @@ const verifyToken = require('../middlewares/authMiddleware');
 const citiesRouter = express.Router();
 citiesRouter.use(verifyToken);
 
-citiesRouter.route('/api/cities').get(citiesController.getCities);
-// .post(citiesController.addCity);
+citiesRouter
+  .route('/api/cities')
+  .get(citiesController.getCities)
+  .post(citiesController.addCity);
 
-citiesRouter.route('/api/cities/:id').get(citiesController.getCityById);
+citiesRouter
+  .route('/api/cities/:id')
+  .get(citiesController.getCityById)
+  .put(citiesController.updateCityById)
+  .delete(citiesController.deleteById);
 
 module.exports = citiesRouter;
